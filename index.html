@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Outil-Ranking</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    .page-container {
+      margin-left: 120px;
+    }
+  </style>
+ 
+</head>
+  
+<body>
+
+
+  
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="col-md-2">
+<img src="https://www.staderennaisathle.fr/images/logos/logoweb2020.png" alt="Image de gauche" class="img-fluid">
+</div>
+
+<h1 class="text-white">Outil Ranking</h1>
+
+ <div class="col-md-2">
+<img src="https://companieslogo.com/img/orig/PUM.DE_BIG.D-bb00d0e2.png?t=1649479959" alt="Image de droite" class="img-fluid">
+</div>
+</nav>
+
+<div class="jumbotron text-center" style="padding: 10px; background-color: #DAE3F3;">
+  <div class="container-fluid">
+  </div>
+</div>
+
+
+<div class="container-fluid">
+
+  
+<form>
+
+    <div class="form-group col-md-8 mx-auto text-center">
+            <label for="liste1" class="h2"><strong>Compétition :</strong></label>
+            <select class="form-control text-center" id="liste1" style="font-size: 24px;">
+                <option value="">-- Sélectionnez une compétition --</option>
+                <Optgroup label=" OW ">
+			<option value="Olympic Games">Olympic Games</option>
+			<option value="WA Championships">WA Championships</option>
+		<Optgroup label=" DF ">
+			<option value="Diamond League Finals">Diamond League Finals</option>
+		<Optgroup label=" GW ">
+			<option value="Diamond League Meetings">Diamond League Meetings</Option>
+			<option value="WA Indoor Championships">WA Indoor Championships</Option>
+		<Optgroup label=" GL ">
+			<option value="Area Outdoor Championships">Area Outdoor Championships</Option>		
+		<Optgroup label=" A ">
+			<option value="Diamond League Meetings (Additional events)">Diamond League Meetings (Additional events)</Option>
+			<option value="Area Indoor Championships">Area Indoor Championships</Option>
+			<option value="WA Indoor Gold Meetings">WA Indoor Gold Meetings</Option>
+			<option value="WA Continental Tour Gold Meetings">WA Continental Tour Gold Meetings</Option>
+		<Optgroup label=" B ">
+			<option value="Area second tier Championships (European Team Championships Super League)">Area second tier Championships (European Team Championships Super League)</Option>
+			<option value="National Outdoor Championships">National Outdoor Championships</Option>
+			<option value="Regional Games & Athletics Championships (Francophone Games)">Regional Games & Athletics Championships (Francophone Games)</Option>
+			<option value="WA Indoor Silver Meetings">WA Indoor Silver Meetings</Option>
+			<option value="WA Continental Silver Meetings">WA Continental Silver Meetings</Option>
+		<Optgroup label=" C ">
+			<option value="WA Indoor Bronze Meetings">WA Indoor Bronze Meetings</Option>
+			<option value="WA Continental Bronze Meetings">WA Continental Bronze Meetings</Option>
+			<option value="Regional Games & Championships (Mediterranean Games)">Regional Games & Championships (Mediterranean Games)</Option>
+		<Optgroup label=" D ">
+			<option value="WA Indoor Challenger">WA Indoor Challenger</Option>
+			<option value="WA Continental Challenger">WA Continental Challenger</Option>
+			<option value="National Indoor Championships">National Indoor Championships</Option>
+		<Optgroup label=" E " >
+		<Optgroup label=" F ">
+        	<option value="Interclub">Interclub</Option>
+            </select>
+    </div>
+      
+
+        
+            <div class="form-group col-md-8 mx-auto text-center">
+                <label for="liste2" class="h2"><strong>Niveau compétition :</strong></label>
+                <select class="form-control text-center"" id="liste2" style="font-size: 24px;">
+                    <option value="">-- Sélectionnez un niveau de compétition --</option>
+    <option value="OW">OW</option>
+    <option value="DF">DF</option>
+    <option value="GW">GW</option>
+    <option value="GL">GL</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="D">D</option>
+    <option value="E">E</option>
+    <option value="F">F</option>
+                </select>
+           
+        </div>
+    </div>
+
+    <script>
+        // Récupérer les éléments de la première et de la deuxième liste déroulante
+        var firstDropdown = document.getElementById("liste1");
+        var secondDropdownContainer = document.getElementById("liste2-container");
+        var secondDropdown = document.getElementById("liste2");
+
+        // Écouter les changements de la première liste déroulante
+        firstDropdown.addEventListener("change", function() {
+            // Récupérer la valeur sélectionnée de la première liste déroulante
+            var selectedValue = firstDropdown.value;
+
+            // Vider la deuxième liste déroulante
+            secondDropdown.innerHTML = "";
+
+            // Afficher ou masquer la deuxième liste déroulante en fonction de la valeur sélectionnée
+            if (selectedValue === "") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "";
+            X.textContent = "";
+            secondDropdown.add(X);
+            
+            var A = document.createElement("option");
+            A.value = "OW";
+            A.textContent = "OW";
+            secondDropdown.add(A);
+                      
+            var B = document.createElement("option");
+            B.value = "DF";
+            B.textContent = "DF";
+            secondDropdown.add(B);
+                       
+            var C = document.createElement("option");
+            C.value = "GW";
+            C.textContent = "GW";
+            secondDropdown.add(C);
+                       
+            var D = document.createElement("option");
+            D.value = "GL";
+            D.textContent = "GL";
+            secondDropdown.add(D);
+                       
+            var E = document.createElement("option");
+            E.value = "A";
+            E.textContent = "A";
+            secondDropdown.add(E);
+                       
+            var F = document.createElement("option");
+            F.value = "B";
+            F.textContent = "B";
+            secondDropdown.add(F);
+                       
+            var G = document.createElement("option");
+            G.value = "C";
+            G.textContent = "C";
+            secondDropdown.add(G);
+                       
+            var H = document.createElement("option");
+            H.value = "D";
+            H.textContent = "D";
+            secondDropdown.add(H);
+            
+            var I = document.createElement("option");
+            I.value = "E";
+            I.textContent = "E";
+            secondDropdown.add(I);
+            
+            var J = document.createElement("option");
+            J.value = "F";
+            J.textContent = "F";
+            secondDropdown.add(J);
+            
+        
+        } else if (selectedValue === "Olympic Games") {
+            // Ajouter les options spécifiques pour l'A
+                     
+            var A = document.createElement("option");
+            A.value = "OW";
+            A.textContent = "OW";
+            secondDropdown.add(A);
+           
+                                    
+        } else if (selectedValue === "WA Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "OW";
+            X.textContent = "OW";
+            secondDropdown.add(X);
+           
+            
+        } else if (selectedValue === "Diamond League Finals") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "DF";
+            X.textContent = "DF";
+            secondDropdown.add(X);
+            
+            
+        } else if (selectedValue === "Diamond League Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "GW";
+            X.textContent = "GW";
+            secondDropdown.add(X);
+            
+        } else if (selectedValue === "WA Indoor Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "GW";
+            X.textContent = "GW";
+            secondDropdown.add(X);
+            
+        } else if (selectedValue === "Area Outdoor Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "GL";
+            X.textContent = "GL";
+            secondDropdown.add(X);
+           
+     } else if (selectedValue === "Diamond League Meetings (Additional events)") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "A";
+            X.textContent = "A";
+            secondDropdown.add(X);
+            
+     } else if (selectedValue === "Area Indoor Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "A";
+            X.textContent = "A";
+            secondDropdown.add(X);
+            
+        } else if (selectedValue === "WA Indoor Gold Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "A";
+            X.textContent = "A";
+            secondDropdown.add(X);
+                        
+        } else if (selectedValue === "WA Continental Tour Gold Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "A";
+            X.textContent = "A";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "Area second tier Championships (European Team Championships Super League)") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "B";
+            X.textContent = "B";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "National Outdoor Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "B";
+            X.textContent = "B";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "Regional Games & Athletics Championships (Francophone Games)") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "B";
+            X.textContent = "B";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "WA Indoor Silver Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "B";
+            X.textContent = "B";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "WA Continental Silver Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "B";
+            X.textContent = "B";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "WA Indoor Bronze Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "C";
+            X.textContent = "C";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "WA Continental Bronze Meetings") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "C";
+            X.textContent = "C";
+            secondDropdown.add(X);
+                            
+        } else if (selectedValue === "Regional Games & Championships (Mediterranean Games)") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "C";
+            X.textContent = "C";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "WA Indoor Challenger") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "D";
+            X.textContent = "D";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "WA Continental Challenger") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "D";
+            X.textContent = "D";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "National Indoor Championships") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "D";
+            X.textContent = "D";
+            secondDropdown.add(X);
+                           
+        } else if (selectedValue === "Interclub") {
+            // Ajouter les options spécifiques pour l'A
+            var X = document.createElement("option");
+            X.value = "F";
+            X.textContent = "F";
+            secondDropdown.add(X);
+           
+
+                secondDropdownContainer.style.display = "block";
+            } else {
+                secondDropdownContainer.style.display = "none";
+            }
+        });
+    </script>
+
+
+<div class="container-fluid">
+
+            <div class="form-group col-md-8 mx-auto text-center">
+                          <label for="liste3" class="h2"><strong>Classement:</strong></label>
+                          <select id="liste3" class="form-control text-center" style="font-size: 24px;">
+                            <option value="">-- Choisissez un classement --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                         </select>
+            </div>
+
+<div class="form-group col-md-8 mx-auto text-center">
+  <label for="resultat" class="h2"><strong>Points classement:</strong></label>
+  <input type="text" id="resultat" class="form-control text-center" style="font-size: 24px;" readonly>
+</div>
+
+</div>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('liste2').addEventListener('change', updateResultat);
+    document.getElementById('liste3').addEventListener('change', updateResultat);
+
+    function updateResultat() {
+      var liste2 = document.getElementById('liste2').value;
+      var liste3 = document.getElementById('liste3').value;
+
+      var resultat = obtenirResultat(liste2, liste3);
+
+      document.getElementById('resultat').value = resultat;
+    }
+
+    function obtenirResultat(liste2, liste3) {
+      var correspondance = {
+        'OW-1': '375',
+'-1': '0',
+'-2': '0',
+'-3': '0',
+'-4': '0',
+'-5': '0',
+'-6': '0',
+'-7': '0',
+'-8': '0',
+'-9': '0',
+'-10': '0',
+'-11': '0',
+'-12': '0',
+'-13': '0',
+'-14': '0',
+'-15': '0',
+'-16': '0',
+'OW_1': '375',
+'OW-2': '330',
+'OW-3': '300',
+'OW-4': '270',
+'OW-5': '250',
+'OW-6': '230',
+'OW-7': '215',
+'OW-8': '200',
+'OW-9': '130',
+'OW-10': '120',
+'OW-11': '110',
+'OW-12': '100',
+'OW-13': '95',
+'OW-14': '90',
+'OW-15': '85',
+'OW-16': '80',
+'DF-1': '240',
+'DF-2': '210',
+'DF-3': '185',
+'DF-4': '170',
+'DF-5': '155',
+'DF-6': '145',
+'DF-7': '135',
+'DF-8': '125',
+'DF-9': '90',
+'DF-10': '80',
+'DF-11': '70',
+'DF-12': '60',
+'DF-13': '0',
+'DF-14': '0',
+'DF-15': '0',
+'DF-16': '0',
+'GW-1': '200',
+'GW-2': '170',
+'GW-3': '150',
+'GW-4': '140',
+'GW-5': '130',
+'GW-6': '120',
+'GW-7': '110',
+'GW-8': '100',
+'GW-9': '70',
+'GW-10': '60',
+'GW-11': '50',
+'GW-12': '45',
+'GW-13': '0',
+'GW-14': '0',
+'GW-15': '0',
+'GW-16': '0',
+'GL-1': '170',
+'GL-2': '145',
+'GL-3': '130',
+'GL-4': '120',
+'GL-5': '110',
+'GL-6': '100',
+'GL-7': '90',
+'GL-8': '80',
+'GL-9': '60',
+'GL-10': '50',
+'GL-11': '45',
+'GL-12': '40',
+'GL-13': '0',
+'GL-14': '0',
+'GL-15': '0',
+'GL-16': '0',
+'A-1': '140',
+'A-2': '120',
+'A-3': '110',
+'A-4': '100',
+'A-5': '90',
+'A-6': '80',
+'A-7': '70',
+'A-8': '60',
+'A-9': '0',
+'A-10': '0',
+'A-11': '0',
+'A-12': '0',
+'A-13': '0',
+'A-14': '0',
+'A-15': '0',
+'A-16': '0',
+'B-1': '100',
+'B-2': '80',
+'B-3': '70',
+'B-4': '60',
+'B-5': '55',
+'B-6': '50',
+'B-7': '45',
+'B-8': '40',
+'B-9': '0',
+'B-10': '0',
+'B-11': '0',
+'B-12': '0',
+'B-13': '0',
+'B-14': '0',
+'B-15': '0',
+'B-16': '0',
+'C-1': '60',
+'C-2': '50',
+'C-3': '45',
+'C-4': '40',
+'C-5': '35',
+'C-6': '30',
+'C-7': '27',
+'C-8': '25',
+'C-9': '0',
+'C-10': '0',
+'C-11': '0',
+'C-12': '0',
+'C-13': '0',
+'C-14': '0',
+'C-15': '0',
+'C-16': '0',
+'D-1': '40',
+'D-2': '35',
+'D-3': '30',
+'D-4': '25',
+'D-5': '22',
+'D-6': '19',
+'D-7': '17',
+'D-8': '15',
+'D-9': '0',
+'D-10': '0',
+'D-11': '0',
+'D-12': '0',
+'D-13': '0',
+'D-14': '0',
+'D-15': '0',
+'D-16': '0',
+'E-1': '25',
+'E-2': '21',
+'E-3': '18',
+'E-4': '15',
+'E-5': '12',
+'E-6': '10',
+'E-7': '0',
+'E-8': '0',
+'E-9': '0',
+'E-10': '0',
+'E-11': '0',
+'E-12': '0',
+'E-13': '0',
+'E-14': '0',
+'E-15': '0',
+'E-16': '0',
+'F-1': '15',
+'F-2': '10',
+'F-3': '5',
+'F-4': '0',
+'F-5': '0',
+'F-6': '0',
+'F-7': '0',
+'F-8': '0',
+'F-9': '0',
+'F-10': '0',
+'F-11': '0',
+'F-12': '0',
+'F-13': '0',
+'F-14': '0',
+'F-15': '0',
+'F-16': '0'
+
+      };
+
+      var cleCorrespondance = liste2 + '-' + liste3;
+
+      if (correspondance.hasOwnProperty(cleCorrespondance)) {
+        return correspondance[cleCorrespondance];
+      } else {
+        return 'Aucun résultat trouvé';
+      }
+    }
+  </script>
+
+<div class="container-fluid">
+  
+<div class="jumbotron text-center" style="padding: 3px; background-color: #8497B0;">
+  <div class="container-fluid">
+  </div>
+</div>
+
+
+  
+    <div class="form-group col-md-8 mx-auto text-center">
+    <label for="liste4" class="h2"><strong>Performance</strong></label>
+    <select class="form-control text-center" id="liste4" onchange="displayResult()" style="font-size: 24px;">
+      <option value="">-- Choisissez une performance --</option>
+    <option value="180">180</option>
+    <option value="181">181</option>
+    <option value="182">182</option>
+    <option value="183">183</option>
+    <option value="184">184</option>
+    <option value="185">185</option>
+    <option value="186">186</option>
+    <option value="187">187</option>
+    <option value="188">188</option>
+    <option value="189">189</option>
+    <option value="190">190</option>
+    <option value="191">191</option>
+    <option value="192">192</option>
+    <option value="193">193</option>
+    <option value="194">194</option>
+    <option value="195">195</option>
+    <option value="196">196</option>
+    <option value="197">197</option>
+    <option value="198">198</option>
+    <option value="199">199</option>
+    <option value="200">200</option>
+    </select>
+  </div>
+  
+<p class="h2  text-center"><strong>Points performance :</strong></p>
+
+ <div class="form-group col-md-8 mx-auto text-center">
+    
+    <input class="form-control text-center" type="text" id="perf" placeholder="..." style="font-size: 24px;" readonly>
+
+<script>
+    function displayResult() {
+        var selectElement = document.getElementById("liste4");
+        var resultElement = document.getElementById("perf");
+        
+        var selectedValue = selectElement.value;
+        var points = getPointsByPerformance(selectedValue);
+        
+        resultElement.value = points;
+    }
+    
+    function getPointsByPerformance(performance) {
+        // Définissez ici votre logique pour récupérer les points en fonction de la performance sélectionnée
+        // Par exemple, vous pouvez utiliser une table de correspondance ou une condition if-else
+        
+        // Exemple de table de correspondance pour les points en fonction des performances
+        var pointsTable = {
+"180": "1023",
+"181": "1033",
+"182": "1043",
+"183": "1052",
+"184": "1062",
+"185": "1072",
+"186": "1082",
+"187": "1091",
+"188": "1101",
+"189": "1111",
+"190": "1121",
+"191": "1131",
+"192": "1140",
+"193": "1150",
+"194": "1160",
+"195": "1170",
+"196": "1180",
+"197": "1190",
+"198": "1200",
+"199": "1209",
+"200": "1219",
+"201": "1229",
+"202": "1239",
+"203": "1249",
+"204": "1259",
+"205": "1269",
+
+            // Ajoutez les autres performances et leurs points ici
+        };
+        
+        return pointsTable[performance] || "";
+    }
+</script> 
+</div>
+<br>
+
+<div class="jumbotron text-center" style="padding: 3px; background-color: #8497B0;">
+  <div class="container-fluid">
+  </div>
+</div>
+
+<p class="h2 col-md-8 mx-auto text-center"><strong>Total :</strong></p>
+
+
+
+<input type="number" class="form-control col-md-8 mx-auto text-center" id="TT" oninput="addition()" placeholder="..." style="font-size: 24px;" readonly>
+
+<script>
+  var premierNombreInput = document.getElementById("resultat");
+  var deuxiemeNombreInput = document.getElementById("perf");
+  var resultatInput = document.getElementById("TT");
+  var intervalID;
+
+  setInterval(effectuerCalcul, 100); // Exécute effectuerCalcul toutes les 1 seconde
+
+  function effectuerCalcul() {
+    var premierNombre = parseFloat(premierNombreInput.value);
+    var deuxiemeNombre = parseFloat(deuxiemeNombreInput.value);
+    var resultat = premierNombre + deuxiemeNombre;
+
+    if (!isNaN(resultat)) {
+      resultatInput.value = resultat;
+    } else {
+      resultatInput.value = "";
+    }
+  }
+</script>
+
+<br>
+
+<div class="jumbotron text-center" style="padding: 10px; background-color: #44546A;">
+  <div class="container-fluid">
+  </div>
+</div>
+
+  <p class="h2 col-md-8 mx-auto text-center"><strong>Rankings :</strong></p>
+
+  <div class="form-group col-md-8 mx-auto text-center">
+    <select class="form-control text-center" id="Discipline" style="font-size: 24px;">
+        <option value="High-Jump">High-Jump</option>
+        <option value="Long-Jump">Long-Jump</option>
+        <option value="Triple-Jump">Triple-Jump</option>
+    </select>
+
+    <select class="form-control text-center" id="Sexe" style="font-size: 24px;">
+        <option value="Women">Women</option>
+        <option value="Men">Men</option>
+    </select>
+
+      <select class="form-control text-center" id="Nbpays" style="font-size: 24px;">     
+        <option value="3">3 / country</option>
+        <option value="Unlimited">Unlimited / country</option>
+    </select>
+    
+</div>
+
+<div class="row justify-content-center">
+    <div class="col text-center" style="margin-right: 0px; margin-top: 20px;">
+        <p style="font-size: 20px; font-weight: bold; color: black;">
+            <a id="rankingWorldLink" href="#" target="_blank" style="color: black;">Ranking World</a>
+        </p>
+    </div>
+    <div class="col text-center" style="margin-left: 0px; margin-top: 20px;">
+        <p style="font-size: 20px; font-weight: bold; color: black;">
+            <a id="rankingRoadLink" href="#" style="color: black;">Ranking Road to Budapest</a>
+        </p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col">
+        <a id="leftImageLink" href="#" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/World_Athletics_logo_2019.svg/1200px-World_Athletics_logo_2019.svg.png" alt="Image de gauche" class="img-fluid mx-auto d-block" style="max-width: 250px; margin-right: 0px;">
+        </a>
+    </div>
+    <div class="col">
+        <a id="rightImageLink" href="#" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhNrK7eqah8cgo6hqfWdj3nXTrIWS7b2tZw&usqp=CAU" alt="Image de droite" class="img-fluid mx-auto d-block" style="max-width: 250px; margin-left: 0px;">
+        </a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Table de correspondance pour les liens
+    var correspondanceTable = {
+        "High-Jump": {
+            "Women": "10229526",
+            "Men": "10229615"
+        },
+        "Long-Jump": {
+            "Women": "10229528",
+            "Men": "10229617"
+        },
+        "Triple-Jump": {
+            "Women": "10229529",
+            "Men": "10229618"
+        }
+    };
+
+  // Fonction pour mettre à jour les liens en fonction des sélections des listes déroulantes
+    function updateLinks() {
+        var discipline = document.getElementById("Discipline").value;
+        var sexe = document.getElementById("Sexe").value;
+      var Nbpays = document.getElementById("Nbpays").value;
+
+        var rankingWorldLink = document.getElementById("rankingWorldLink");
+        rankingWorldLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=world&page=1&limitByCountry=" + Nbpays.toLowerCase();
+
+        var rankingRoadLink = document.getElementById("rankingRoadLink");
+        var eventId = correspondanceTable[discipline][sexe];
+        rankingRoadLink.href = "https://worldathletics.org/stats-zone/road-to/7138987?eventId=" + eventId;
+
+        var leftImageLink = document.getElementById("leftImageLink");
+        leftImageLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=world&page=1&limitByCountry=" + Nbpays.toLowerCase();
+
+        var rightImageLink = document.getElementById("rightImageLink");
+        rightImageLink.href = "https://worldathletics.org/stats-zone/road-to/7138987?eventId=" + eventId;
+    }
+
+    // Écouteurs d'événements pour les changements des listes déroulantes
+    document.getElementById("Discipline").addEventListener("change", updateLinks);
+    document.getElementById("Sexe").addEventListener("change", updateLinks);
+    document.getElementById("Nbpays").addEventListener("change", updateLinks);
+
+    // Mettre à jour les liens initiaux
+    updateLinks();
+</script>
+
+
+     
+<p> </p>
+<p class="mb-1"> </p>
+<p> </p>
+
+<div class="jumbotron text-center" style="padding: 10px; background-color: #44546A;">
+  <div class="container-fluid">
+  </div>
+</div>
+
+
+</form>
+
+  <div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">  
+        <tr>
+          <th class="text-center" scope="col-0,5">Niveau</th>
+          <th class="text-center" scope="col">1</th>
+          <th class="text-center" scope="col">2</th>
+          <th class="text-center" scope="col">3</th>
+          <th class="text-center" scope="col">4</th>
+          <th class="text-center" scope="col">5</th>
+          <th class="text-center" scope="col">6</th>
+          <th class="text-center" scope="col">7</th>
+          <th class="text-center" scope="col">8</th>
+          <th class="text-center" scope="col">9</th>
+          <th class="text-center" scope="col">10</th>
+          <th class="text-center" scope="col">11</th>
+          <th class="text-center" scope="col">12</th>
+          <th class="text-center" scope="col">13</th>
+          <th class="text-center" scope="col">14</th>
+          <th class="text-center" scope="col">15</th>
+          <th class="text-center" scope="col">16</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">OW</td>
+          <td class="text-center">375</td>
+          <td class="text-center">330</td>
+          <td class="text-center">300</td>
+          <td class="text-center">270</td>
+          <td class="text-center">250</td>
+          <td class="text-center">230</td>
+          <td class="text-center">215</td>
+          <td class="text-center">200</td>
+          <td class="text-center">130</td>
+          <td class="text-center">120</td>
+          <td class="text-center">110</td>
+          <td class="text-center">100</td>
+          <td class="text-center">95</td>
+          <td class="text-center">90</td>
+          <td class="text-center">85</td>
+          <td class="text-center">80</td>
+        </tr>
+        <tr>
+          <td class="text-center">DF</td>
+          <td class="text-center">240</td>
+          <td class="text-center">210</td>
+          <td class="text-center">185</td>
+          <td class="text-center">170</td>
+          <td class="text-center">155</td>
+          <td class="text-center">145</td>
+          <td class="text-center">135</td>
+          <td class="text-center">125</td>
+          <td class="text-center">90</td>
+          <td class="text-center">80</td>
+          <td class="text-center">70</td>
+          <td class="text-center">60</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">GW</td>
+          <td class="text-center">200
+          <td class="text-center">170</td>
+          <td class="text-center">150</td>
+          <td class="text-center">140</td>
+          <td class="text-center">130</td>
+          <td class="text-center">120</td>
+          <td class="text-center">110</td>
+          <td class="text-center">100</td>
+          <td class="text-center">70</td>
+          <td class="text-center">60</td>
+          <td class="text-center">50</td>
+          <td class="text-center">45</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">GL</td>
+          <td class="text-center">170</td>
+          <td class="text-center">145</td>
+          <td class="text-center">130</td>
+          <td class="text-center">120</td>
+          <td class="text-center">110</td>
+          <td class="text-center">100</td>
+          <td class="text-center">90</td>
+          <td class="text-center">80</td>
+          <td class="text-center">60</td>
+          <td class="text-center">50</td>
+          <td class="text-center">45</td>
+          <td class="text-center">40</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">A</td>
+          <td class="text-center">140</td>
+          <td class="text-center">120</td>
+          <td class="text-center">110</td>
+          <td class="text-center">100</td>
+          <td class="text-center">90</td>
+          <td class="text-center">80</td>
+          <td class="text-center">70</td>
+          <td class="text-center">60</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">B</td>
+          <td class="text-center">100</td>
+          <td class="text-center">80</td>
+          <td class="text-center">70</td>
+          <td class="text-center">60</td>
+          <td class="text-center">55</td>
+          <td class="text-center">50</td>
+          <td class="text-center">45</td>
+          <td class="text-center">40</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">C</td>
+          <td class="text-center">60</td>
+          <td class="text-center">50</td>
+          <td class="text-center">45</td>
+          <td class="text-center">40</td>
+          <td class="text-center">35</td>
+          <td class="text-center">30</td>
+          <td class="text-center">27</td>
+          <td class="text-center">25</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">D</td>
+          <td class="text-center">40</td>
+          <td class="text-center">40</td>
+          <td class="text-center">35</td>
+          <td class="text-center">30</td>
+          <td class="text-center">25</td>
+          <td class="text-center">22</td>
+          <td class="text-center">19</td>
+          <td class="text-center">17</td>
+          <td class="text-center">15</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">E</td>
+          <td class="text-center">25</td>
+          <td class="text-center">21</td>
+          <td class="text-center">18</td>
+          <td class="text-center">15</td>
+          <td class="text-center">12</td>
+          <td class="text-center">10</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+        </tr>
+        <tr>
+          <td class="text-center">F</td>
+          <td class="text-center">15</td>
+          <td class="text-center">10</td>
+          <td class="text-center">5</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+          <td class="text-center">0</td>
+     </tr>
+      <!-- Autres lignes du tableau -->
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
