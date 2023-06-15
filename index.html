@@ -9,7 +9,11 @@
       margin-left: 120px;
     }
   </style>
- 
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
 </head>
   
 <body>
@@ -39,8 +43,11 @@
 
   
 <form>
-
-    <div class="form-group col-md-8 mx-auto text-center">
+<div class="container-fluid">
+<div class="row">
+    <div class="form-group col-md-6 text-center">
+  
+  
             <label for="liste1" class="h2"><strong>Compétition :</strong></label>
             <select class="form-control text-center" id="liste1" style="font-size: 24px;">
                 <option value="">-- Sélectionnez une compétition --</option>
@@ -80,11 +87,11 @@
     </div>
       
 
-        
-            <div class="form-group col-md-8 mx-auto text-center">
+        <div class="form-group col-md-6 text-center">
+           
                 <label for="liste2" class="h2"><strong>Niveau compétition :</strong></label>
                 <select class="form-control text-center"" id="liste2" style="font-size: 24px;">
-                    <option value="">-- Sélectionnez un niveau de compétition --</option>
+                    <option value="">-- Sélectionnez un niveau --</option>
     <option value="OW">OW</option>
     <option value="DF">DF</option>
     <option value="GW">GW</option>
@@ -340,9 +347,18 @@
     </script>
 
 
+  <div class="jumbotron text-center" style="padding: 3px; background-color: #8497B0;">
+  
+  </div>
+</div>
+
 <div class="container-fluid">
 
-            <div class="form-group col-md-8 mx-auto text-center">
+  
+  
+<div class="row">
+    <div class="form-group col-md-6 text-center">
+ 
                           <label for="liste3" class="h2"><strong>Classement:</strong></label>
                           <select id="liste3" class="form-control text-center" style="font-size: 24px;">
                             <option value="">-- Choisissez un classement --</option>
@@ -365,12 +381,51 @@
                          </select>
             </div>
 
-<div class="form-group col-md-8 mx-auto text-center">
+  <div class="form-group col-md-6 text-center">
+  
+
+    <label for="liste4" class="h2"><strong>Performance</strong></label>
+    <select class="form-control text-center" id="liste4" onchange="displayResult()" style="font-size: 24px;">
+      <option value="">-- Choisissez une performance --</option>
+    <option value="180">180</option>
+    <option value="181">181</option>
+    <option value="182">182</option>
+    <option value="183">183</option>
+    <option value="184">184</option>
+    <option value="185">185</option>
+    <option value="186">186</option>
+    <option value="187">187</option>
+    <option value="188">188</option>
+    <option value="189">189</option>
+    <option value="190">190</option>
+    <option value="191">191</option>
+    <option value="192">192</option>
+    <option value="193">193</option>
+    <option value="194">194</option>
+    <option value="195">195</option>
+    <option value="196">196</option>
+    <option value="197">197</option>
+    <option value="198">198</option>
+    <option value="199">199</option>
+    <option value="200">200</option>
+    </select>
+  </div>
+
+
+
+
+<div class="container-fluid">
+  
+
+
+  <div class="row">
+
+<div class="form-group col-md-6 text-center">
   <label for="resultat" class="h2"><strong>Points classement:</strong></label>
-  <input type="text" id="resultat" class="form-control text-center" style="font-size: 24px;" readonly>
+  <input type="text" id="resultat" placeholder="..." class="form-control text-center" style="font-size: 24px;" readonly>
 </div>
 
-</div>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script>
     document.getElementById('liste2').addEventListener('change', updateResultat);
@@ -576,49 +631,17 @@
       }
     }
   </script>
-
-<div class="container-fluid">
-  
-<div class="jumbotron text-center" style="padding: 3px; background-color: #8497B0;">
-  <div class="container-fluid">
-  </div>
-</div>
-
-
-  
-    <div class="form-group col-md-8 mx-auto text-center">
-    <label for="liste4" class="h2"><strong>Performance</strong></label>
-    <select class="form-control text-center" id="liste4" onchange="displayResult()" style="font-size: 24px;">
-      <option value="">-- Choisissez une performance --</option>
-    <option value="180">180</option>
-    <option value="181">181</option>
-    <option value="182">182</option>
-    <option value="183">183</option>
-    <option value="184">184</option>
-    <option value="185">185</option>
-    <option value="186">186</option>
-    <option value="187">187</option>
-    <option value="188">188</option>
-    <option value="189">189</option>
-    <option value="190">190</option>
-    <option value="191">191</option>
-    <option value="192">192</option>
-    <option value="193">193</option>
-    <option value="194">194</option>
-    <option value="195">195</option>
-    <option value="196">196</option>
-    <option value="197">197</option>
-    <option value="198">198</option>
-    <option value="199">199</option>
-    <option value="200">200</option>
-    </select>
-  </div>
-  
+    
+<div class="form-group col-md-6 text-center">
 <p class="h2  text-center"><strong>Points performance :</strong></p>
 
- <div class="form-group col-md-8 mx-auto text-center">
+
     
     <input class="form-control text-center" type="text" id="perf" placeholder="..." style="font-size: 24px;" readonly>
+
+ </div>
+   </div>
+  </div>
 
 <script>
     function displayResult() {
@@ -673,10 +696,7 @@
 </div>
 <br>
 
-<div class="jumbotron text-center" style="padding: 3px; background-color: #8497B0;">
-  <div class="container-fluid">
-  </div>
-</div>
+
 
 <p class="h2 col-md-8 mx-auto text-center"><strong>Total :</strong></p>
 
@@ -712,25 +732,150 @@
   </div>
 </div>
 
+  
+
+
+<p class="h2 col-md-8 mx-auto text-center"><strong>Moyenne :</strong></p>
+
+<div class="row justify-content-center">
+  
+<div class="form-group col-md-2 text-center"> 
+<div class="input-group">
+  <input type="text" class="form-control text-center" id="P1" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">Pts</span>
+  </div>
+</div>
+</div>
+
+<div class="form-group col-md-2 text-center"> 
+<div class="input-group">
+  <input type="text" class="form-control text-center" id="P2" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">Pts</span>
+  </div>
+</div>
+</div>
+
+<div class="form-group col-md-2 text-center"> 
+<div class="input-group">
+  <input type="text" class="form-control text-center" id="P3" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">Pts</span>
+  </div>
+</div>
+</div>
+
+<div class="form-group col-md-2 text-center"> 
+<div class="input-group">
+  <input type="text" class="form-control text-center" id="P4" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">Pts</span>
+  </div>
+</div>
+</div>
+
+
+<div class="form-group col-md-2 text-center"> 
+<div class="input-group">
+  <input type="text" class="form-control text-center" id="P5" aria-label="Amount (to the nearest dollar)">
+  <div class="input-group-append">
+    <span class="input-group-text">Pts</span>
+  </div>
+</div>
+</div>  
+</div>
+
+<input type="number" class="form-control col-md-6 mx-auto text-center" id="Moy" oninput="addition()" placeholder="..." style="font-size: 24px;" readonly>
+
+<script>
+  var P1Input = document.getElementById("P1");
+  var P2Input = document.getElementById("P2");
+  var P3Input = document.getElementById("P3");
+  var P4Input = document.getElementById("P4");
+  var P5Input = document.getElementById("P5");
+  var MoyInput = document.getElementById("Moy");
+  var intervalID;
+
+  P1Input.value = 1180;
+  P2Input.value = 1172;
+  P3Input.value = 1172;
+  P4Input.value = 1171;
+  P5Input.value = 1152;
+  
+  setInterval(effectuerCalcul, 100); // Exécute effectuerCalcul toutes les 1 seconde
+
+  function effectuerCalcul() {
+    var P1 = parseFloat(P1Input.value);
+    var P2 = parseFloat(P2Input.value);
+    var P3 = parseFloat(P3Input.value);
+    var P4 = parseFloat(P4Input.value);
+    var P5 = parseFloat(P5Input.value);
+    var moyenne = Math.round((P1+P2+P3+P4+P5)/5);
+
+    
+
+  
+    if (!isNaN(moyenne)) {
+      MoyInput.value = moyenne;
+    } else {
+      MoyInput.value = "";
+    }
+  }
+</script>
+
+  
+</div>
+  <br>
+  <div class="container-fluid">
+<div class="jumbotron text-center" style="padding: 10px; background-color: #44546A;">
+  <div class="container-fluid">
+  </div>
+</div>
+</div>
+  
   <p class="h2 col-md-8 mx-auto text-center"><strong>Rankings :</strong></p>
 
-  <div class="form-group col-md-8 mx-auto text-center">
-    <select class="form-control text-center" id="Discipline" style="font-size: 24px;">
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-6 text-center">
+      <select class="form-control text-center" id="Discipline" style="font-size: 24px;">
         <option value="High-Jump">High-Jump</option>
         <option value="Long-Jump">Long-Jump</option>
         <option value="Triple-Jump">Triple-Jump</option>
-    </select>
+      </select>
+    </div>
 
-    <select class="form-control text-center" id="Sexe" style="font-size: 24px;">
+    <div class="form-group col-md-6 text-center">
+      <select class="form-control text-center" id="Périmètre" style="font-size: 24px;">
+        <option value="World">World</option>
+        <option value="area&region=europe">Europe</option>
+        <option value="countries&region=fra">France</option>
+      </select>
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6 text-center">
+      <select class="form-control text-center" id="Sexe" style="font-size: 24px;">
         <option value="Women">Women</option>
         <option value="Men">Men</option>
-    </select>
+      </select>
+    </div>
 
-      <select class="form-control text-center" id="Nbpays" style="font-size: 24px;">     
+    <div class="form-group col-md-6 text-center">
+      <select class="form-control text-center" id="Nbpays" class="form-control" style="font-size: 24px;">
+        <!-- Les options de la deuxième liste déroulante seront modifiées dynamiquement -->
         <option value="3">3 / country</option>
         <option value="Unlimited">Unlimited / country</option>
-    </select>
-    
+      </select>
+       </div>
+ </div>
+</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="row justify-content-center">
@@ -780,21 +925,23 @@
         }
     };
 
+
   // Fonction pour mettre à jour les liens en fonction des sélections des listes déroulantes
     function updateLinks() {
         var discipline = document.getElementById("Discipline").value;
         var sexe = document.getElementById("Sexe").value;
       var Nbpays = document.getElementById("Nbpays").value;
+      var Périmètre = document.getElementById("Périmètre").value;
 
         var rankingWorldLink = document.getElementById("rankingWorldLink");
-        rankingWorldLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=world&page=1&limitByCountry=" + Nbpays.toLowerCase();
+        rankingWorldLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=" + Périmètre.toLowerCase() + "&page=1&limitByCountry=" + Nbpays.toLowerCase();
 
         var rankingRoadLink = document.getElementById("rankingRoadLink");
         var eventId = correspondanceTable[discipline][sexe];
         rankingRoadLink.href = "https://worldathletics.org/stats-zone/road-to/7138987?eventId=" + eventId;
 
         var leftImageLink = document.getElementById("leftImageLink");
-        leftImageLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=world&page=1&limitByCountry=" + Nbpays.toLowerCase();
+        leftImageLink.href = "https://worldathletics.org/world-rankings/" + discipline.toLowerCase() + "/" + sexe.toLowerCase() + "?regionType=" + Périmètre.toLowerCase() + "&page=1&limitByCountry=" + Nbpays.toLowerCase();
 
         var rightImageLink = document.getElementById("rightImageLink");
         rightImageLink.href = "https://worldathletics.org/stats-zone/road-to/7138987?eventId=" + eventId;
@@ -804,6 +951,7 @@
     document.getElementById("Discipline").addEventListener("change", updateLinks);
     document.getElementById("Sexe").addEventListener("change", updateLinks);
     document.getElementById("Nbpays").addEventListener("change", updateLinks);
+  document.getElementById("Périmètre").addEventListener("change", updateLinks);
 
     // Mettre à jour les liens initiaux
     updateLinks();
@@ -815,14 +963,80 @@
 <p class="mb-1"> </p>
 <p> </p>
 
+<div class="container-fluid">
+  <div class="container-fluid">
 <div class="jumbotron text-center" style="padding: 10px; background-color: #44546A;">
   <div class="container-fluid">
   </div>
 </div>
-
+</div>
 
 </form>
+<div class="container-fluid">
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="thead-dark">  
+        <tr>
+          <th class="text-center" scope="col-0,5">Perf</th>
+          <th class="text-center" scope="col">180</th>
+          <th class="text-center" scope="col">181</th>
+          <th class="text-center" scope="col">182</th>
+          <th class="text-center" scope="col">183</th>
+          <th class="text-center" scope="col">184</th>
+          <th class="text-center" scope="col">185</th>
+          <th class="text-center" scope="col">186</th>
+          <th class="text-center" scope="col">187</th>
+          <th class="text-center" scope="col">188</th>
+          <th class="text-center" scope="col">189</th>
+          <th class="text-center" scope="col">190</th>
+          <th class="text-center" scope="col">191</th>
+          <th class="text-center" scope="col">192</th>
+          <th class="text-center" scope="col">193</th>
+          <th class="text-center" scope="col">194</th>
+          <th class="text-center" scope="col">195</th>
+          <th class="text-center" scope="col">196</th>
+          <th class="text-center" scope="col">197</th>
+          <th class="text-center" scope="col">198</th>
+          <th class="text-center" scope="col">199</th>
+          <th class="text-center" scope="col">200</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">Pts</td>
+          <td class="text-center">1023</td>
+          <td class="text-center">1033</td>
+          <td class="text-center">1043</td>
+          <td class="text-center">1052</td>
+          <td class="text-center">1062</td>
+          <td class="text-center">1072</td>
+          <td class="text-center">1082</td>
+          <td class="text-center">1091</td>
+          <td class="text-center">1101</td>
+          <td class="text-center">1111</td>
+          <td class="text-center">1121</td>
+          <td class="text-center">1131</td>
+          <td class="text-center">1140</td>
+          <td class="text-center">1150</td>
+          <td class="text-center">1160</td>
+          <td class="text-center">1170</td>
+          <td class="text-center">1180</td>
+          <td class="text-center">1190</td>
+          <td class="text-center">1200</td>
+          <td class="text-center">1209</td>
+          <td class="text-center">1219</td>
+        </tr>
 
+
+        
+      <!-- Autres lignes du tableau -->
+    </tbody>
+  </table>
+</div>
+
+  <br>
+
+  
   <div class="table-responsive">
   <table class="table table-striped">
     <thead class="thead-dark">  
@@ -1042,9 +1256,13 @@
   </table>
 </div>
 
+</div>
+  </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </div>
 </body>
 </html>
