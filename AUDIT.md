@@ -359,15 +359,17 @@ L'ancienne version affichait un champ vide sans explication dans tous ces cas.
 La page indique désormais explicitement la différence entre une performance
 absente du barème et une performance présente mais non cotée.
 
-**Deux points restent à trancher côté club :**
+**Suites données :**
 
-1. **Faut-il arrondir au palier inférieur ?** C'est ainsi que fonctionne le
-   barème World Athletics : une performance située entre deux paliers vaut les
-   points du palier immédiatement moins bon. L'outil ne le fait pas — ni avant,
-   ni maintenant — car cela change la sémantique du calcul. C'est une décision
-   métier, pas technique.
-2. **Le 4x100m n'a aucune ligne cotée.** Soit le barème source est incomplet
-   pour cette épreuve, soit elle n'a pas à figurer dans le menu.
+1. **Arrondi au palier inférieur : appliqué.** C'est la règle World Athletics —
+   une performance située entre deux paliers vaut les points du palier
+   immédiatement moins bon. Sur les 94 350 lignes non cotées, 93 519 sont
+   encadrées par deux paliers et deviennent donc exploitables ; seules 831 sont
+   réellement sous le plancher du barème. La couverture passe de **24 635 à
+   118 154 performances sur 118 985**, soit de 21 % à 99 %. L'arrondi est
+   signalé à l'écran, et jamais silencieux.
+2. **Le 4x100m masculin n'a aucune ligne cotée** (0 sur 822). Laissé en l'état
+   sur décision du club.
 
 ---
 
@@ -380,5 +382,5 @@ l'usage réel de l'outil. Ils sont indépendants les uns des autres et peuvent
 Le point 8 (valeur `OW-1`) a été tranché à 260, conformément aux règles
 World Athletics 2026.
 
-Les arbitrages restants sont ceux du chapitre 6 : l'arrondi au palier inférieur
-et le sort du 4x100m.
+Les deux arbitrages du chapitre 6 ont été tranchés : l'arrondi au palier
+inférieur est appliqué, et le 4x100m masculin reste en l'état.

@@ -48,6 +48,7 @@
      temps constant, au lieu d'un parcours des 118 986 lignes du bareme. */
   var pointsParPerf = new Map();
   var perfParPoints = new Map();
+  var perfsArrondies = new Set();
   var placement = null;
   var config = null;
 
@@ -63,8 +64,28 @@
 
   /* ---------- Chargement des donnees ---------- */
 
+  /* Le bareme ne cote qu'une performance de reference par palier de points.
+     Une performance situee entre deux paliers vaut, selon la regle World
+     Athletics, les points du palier inferieur : c'est ce que fait l'arrondi
+     ci-dessous. Il ne s'applique qu'entre deux paliers cotes — une performance
+     sous le plancher du bareme reste sans points.
+
+     Le fichier est groupe par epreuve, et ordonne du meilleur au moins bon
+     pour les courses, l'inverse pour les concours. Prendre le plus petit des
+     deux paliers encadrants donne le bon resultat dans les deux cas, sans
+     avoir a interpreter le format des performances. */
   function analyserCSV(texte) {
     var lignes = texte.split(/\r\n|\n|\r/);
+
+    var blocCourant = "";
+    var palierPrecedent = null;
+    var enAttente = [];
+
+    function cloreBloc() {
+      /* Les performances restees sans palier suivant sont hors bareme. */
+      enAttente = [];
+      palierPrecedent = null;
+    }
 
     for (var i = 1; i < lignes.length; i++) {
       var ligne = lignes[i];
@@ -78,18 +99,45 @@
       var points = colonnes[2].trim();
       var perf = colonnes[3].trim();
 
+      var bloc = cle(sexe, epreuve);
+      if (bloc !== blocCourant) {
+        cloreBloc();
+        blocCourant = bloc;
+      }
+
+      var clePerf = cle(sexe, epreuve, perf);
+
+      if (points === "") {
+        enAttente.push(clePerf);
+        continue;
+      }
+
+      var valeur = parseInt(points, 10);
+
+      /* Les performances en attente prennent le plus faible des deux paliers
+         qui les encadrent. */
+      if (palierPrecedent !== null) {
+        var inferieur = Math.min(palierPrecedent, valeur);
+        for (var j = 0; j < enAttente.length; j++) {
+          if (!pointsParPerf.has(enAttente[j])) {
+            pointsParPerf.set(enAttente[j], inferieur);
+            perfsArrondies.add(enAttente[j]);
+          }
+        }
+      }
+      enAttente = [];
+      palierPrecedent = valeur;
+
       /* Le bareme associe parfois deux performances au meme nombre de points.
          On conserve la premiere rencontree, comme le faisait la recherche
          lineaire d'origine. */
-      var clePerf = cle(sexe, epreuve, perf);
-      if (!pointsParPerf.has(clePerf)) pointsParPerf.set(clePerf, points);
+      if (!pointsParPerf.has(clePerf)) pointsParPerf.set(clePerf, valeur);
 
-      /* Les lignes sans points ne peuvent pas servir de cle de conversion. */
-      if (points !== "") {
-        var clePoints = cle(sexe, epreuve, points);
-        if (!perfParPoints.has(clePoints)) perfParPoints.set(clePoints, perf);
-      }
+      var clePoints = cle(sexe, epreuve, points);
+      if (!perfParPoints.has(clePoints)) perfParPoints.set(clePoints, perf);
     }
+
+    cloreBloc();
   }
 
   function afficherEtat(niveau, message) {
@@ -212,11 +260,18 @@
 
     if (!sexe || !discipline || !perf) return { points: null, statut: "incomplet" };
 
-    var valeur = pointsParPerf.get(cle(sexe, discipline, perf));
-    if (valeur === undefined) return { points: null, statut: "absente" };
-    if (valeur === "") return { points: null, statut: "non-cotee" };
+    var clePerf = cle(sexe, discipline, perf);
+    var valeur = pointsParPerf.get(clePerf);
 
-    return { points: parseInt(valeur, 10), statut: "ok" };
+    if (valeur === undefined) return { points: null, statut: "absente" };
+
+    return {
+      points: valeur,
+      statut: perfsArrondies.has(clePerf) ? "arrondie" : "ok",
+      reference: perfsArrondies.has(clePerf)
+        ? perfParPoints.get(cle(sexe, discipline, String(valeur)))
+        : null
+    };
   }
 
   function ordinal(rang) {
@@ -243,6 +298,7 @@
 
     afficherNombre(el.pointsPlacement, placementPoints);
     afficherNombre(el.pointsPerformance, performance.points);
+    el.pointsPerformance.dataset.arrondi = performance.statut === "arrondie" ? "oui" : "non";
 
     /* Le total n'a de sens que si les deux composantes sont connues. */
     if (placementPoints === null || performance.points === null) {
@@ -262,9 +318,15 @@
     unite.textContent = "pts";
     el.total.appendChild(unite);
 
-    el.detailCalcul.textContent =
-      performance.points + " (performance) + " + placementPoints + " (placement " +
-      categorie + ", " + ordinal(el.classement.value) + ") = " + total;
+    var detail = performance.points + " (performance) + " + placementPoints +
+      " (placement " + categorie + ", " + ordinal(el.classement.value) + ") = " + total;
+
+    if (performance.statut === "arrondie") {
+      detail += " — performance arrondie au palier inférieur" +
+        (performance.reference ? " (" + performance.reference + ")" : "");
+    }
+
+    el.detailCalcul.textContent = detail;
   }
 
   function messageIncomplet(placementPoints, performance) {
@@ -275,9 +337,8 @@
         ? "choisissez un sexe et une épreuve"
         : "saisissez une performance");
     } else if (performance.statut === "absente") {
-      manques.push("performance absente du barème (formats attendus : 9.46, 1.58.43, 2.35)");
-    } else if (performance.statut === "non-cotee") {
-      manques.push("cette performance figure au barème sans être cotée : essayez la performance de référence immédiatement inférieure");
+      manques.push("performance hors barème : soit le format ne correspond pas " +
+        "(attendus : 9.46, 1.58.43, 2.35), soit elle est sous le plancher de 800 points");
     }
 
     if (placementPoints === null) {

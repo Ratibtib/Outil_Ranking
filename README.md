@@ -55,9 +55,18 @@ valeurs employées par le menu de la page — dont deux regroupent les versions
 masculine et féminine : `110mH / 100mH` et `Decathlon / Heptathlon`.
 
 La colonne `Points` peut être vide : le barème ne cote qu'une performance de
-référence par palier de points (de 800 à 1400). Les performances
-intermédiaires figurent dans le fichier sans être cotées, et la page l'indique
-explicitement plutôt que d'afficher un résultat vide.
+référence par palier (de 800 à 1400 points), et les performances
+intermédiaires figurent dans le fichier sans valeur — 79 % des lignes.
+
+La page applique alors la règle World Athletics : **une performance située
+entre deux paliers vaut les points du palier inférieur**. L'arrondi est
+calculé au chargement, signalé à l'écran, et ne s'applique qu'entre deux
+paliers cotés — une performance sous le plancher du barème reste sans points.
+La couverture passe ainsi de 24 635 à 118 154 performances sur 118 985.
+
+L'arrondi ne suppose rien du format des performances : le fichier étant trié
+du meilleur au moins bon pour les courses et l'inverse pour les concours, la
+page retient simplement le plus faible des deux paliers encadrants.
 
 ## Mise à jour saisonnière
 
@@ -94,6 +103,23 @@ npm test                     # calculs vérifiés dans un navigateur
 
 Ces deux commandes sont exécutées par l'intégration continue à chaque poussée
 (`.github/workflows/ci.yml`).
+
+## Choix techniques
+
+La page n'a **aucune dépendance externe** : ni framework, ni bibliothèque, ni
+police téléchargée. Bootstrap, jQuery et Popper ont été retirés (Popper 2.x y
+était chargé alors que Bootstrap 4.5 exige Popper 1.x), et les polices sont
+celles du système.
+
+Ce n'est pas qu'une question de poids : une feuille de style externe bloque le
+rendu. Lors des mesures, une simple inclusion de Google Fonts retardait
+l'affichage de 12,6 secondes sur un réseau filtré, contre 130 ms pour le
+barème complet. Pour un outil consulté en bord de piste sur réseau mobile,
+la page doit s'afficher sans dépendre d'un tiers.
+
+Le barème est préchargé (`<link rel="preload">`) pour que son téléchargement
+démarre avec la page plutôt qu'après l'exécution du script. Page prête en
+environ 450 ms, indexation des 118 985 lignes comprise.
 
 ## Licence
 

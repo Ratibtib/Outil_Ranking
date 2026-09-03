@@ -80,14 +80,42 @@ verifier("categorie D, 7e place = 12 points", await page.inputValue("#points-pla
 await saisir({ competition: "Interclub", place: "3" });
 verifier("categorie F, 3e place = 4 points", await page.inputValue("#points-placement"), "4");
 
+console.log("\nArrondi au palier inferieur");
+
+/* Le bareme ne cote qu'une performance de reference par palier. Une
+   performance situee entre deux paliers vaut les points du palier inferieur. */
+
+await saisir({ competition: "Olympic Games", place: "1", epreuve: "800m", perf: "1.37.94" });
+verifier("800m 1.37.94 : palier exact", await page.inputValue("#points-performance"), "1399");
+
+await saisir({ perf: "1.37.92" });
+verifier("800m 1.37.92 : entre 1400 et 1399, arrondi a 1399", await page.inputValue("#points-performance"), "1399");
+verifier(
+  "l'arrondi est signale a l'utilisateur",
+  (await page.textContent("#detail-calcul")).includes("arrondie au palier inférieur"),
+  true
+);
+
+await saisir({ perf: "1.58.40" });
+verifier("800m 1.58.40 : arrondi au plancher 800", await page.inputValue("#points-performance"), "800");
+
+/* Les concours sont ordonnes du moins bon au meilleur : l'arrondi doit
+   fonctionner dans les deux sens de tri. */
+await saisir({ epreuve: "Shot-Put", perf: "14.61" });
+verifier("poids 14.61 : entre 800 et 801, arrondi a 800", await page.inputValue("#points-performance"), "800");
+
+await saisir({ perf: "14.64" });
+verifier("poids 14.64 : entre 802 et 803, arrondi a 802", await page.inputValue("#points-performance"), "802");
+
 console.log("\nPerformances hors bareme");
 
-await saisir({ competition: "Olympic Games", place: "1", perf: "pas-une-perf" });
+await saisir({ epreuve: "100m", perf: "pas-une-perf" });
 verifier("performance absente : pas de points", await page.inputValue("#points-performance"), "");
 verifier("performance absente : total vide", await page.textContent("#total"), "—");
 
-await saisir({ epreuve: "800m", perf: "1.37.92" });
-verifier("performance non cotee : pas de points", await page.inputValue("#points-performance"), "");
+/* Sous le plancher du bareme, il n'y a pas de palier inferieur : pas de points. */
+await saisir({ epreuve: "Decathlon / Heptathlon", perf: "59.94" });
+verifier("sous le plancher : pas de points", await page.inputValue("#points-performance"), "");
 
 console.log("\nConversion points vers performance");
 

@@ -6,6 +6,7 @@
   <title>Outil Ranking — points World Athletics</title>
   <meta name="description" content="Calcul des points World Athletics : points de performance, points de placement et score total, pour le Stade Rennais Athlétisme.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="data/bareme-performance.csv" as="fetch" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -13,13 +14,13 @@
 <header class="bandeau">
   <div class="bandeau-contenu">
     <img class="logo" src="https://www.staderennaisathle.fr/images/logos/logoweb2020.png"
-         alt="Stade Rennais Athlétisme" onerror="this.dataset.absent=''">
+         alt="Stade Rennais Athlétisme" width="120" height="44" onerror="this.dataset.absent=''">
     <h1>
       Outil Ranking
       <span class="saison">Barème World Athletics 2026</span>
     </h1>
     <img class="logo" src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/World_Athletics_logo_2019.svg/1200px-World_Athletics_logo_2019.svg.png"
-         alt="World Athletics" onerror="this.dataset.absent=''">
+         alt="World Athletics" width="150" height="44" loading="lazy" onerror="this.dataset.absent=''">
   </div>
 </header>
 
@@ -29,7 +30,7 @@
 
   <!-- ---------- Athlète et épreuve ---------- -->
   <section class="bloc">
-    <h2>Athlète et épreuve</h2>
+    <h2 data-etape="1">Athlète et épreuve</h2>
     <div class="grille">
       <div class="champ">
         <label for="sexe">Sexe</label>
@@ -50,7 +51,7 @@
 
   <!-- ---------- Compétition ---------- -->
   <section class="bloc">
-    <h2>Compétition et classement</h2>
+    <h2 data-etape="2">Compétition et classement</h2>
     <div class="grille">
       <div class="champ">
         <label for="competition">Compétition</label>
@@ -74,12 +75,12 @@
 
   <!-- ---------- Performance et total ---------- -->
   <section class="bloc">
-    <h2>Performance et score total</h2>
-    <div class="grille resultat">
+    <h2 data-etape="3">Performance et score total</h2>
+    <div class="composantes">
       <div class="champ">
         <label for="performance">Performance réalisée</label>
         <input type="text" id="performance" inputmode="decimal" autocomplete="off" placeholder="9.46">
-        <p class="aide">Format du barème : 9.46, 2:03.51, 7.85…</p>
+        <p class="aide">Formats du barème : 9.46, 1.58.43, 2.35. Une performance située entre deux paliers est arrondie au palier inférieur.</p>
       </div>
       <div class="champ">
         <label for="points-performance">Points de performance</label>
@@ -94,7 +95,7 @@
     <div class="total">
       <span class="intitule">Score total</span>
       <span class="valeur" id="total" data-vide="oui" role="status" aria-live="polite">—</span>
-      <p class="detail-calcul" id="detail-calcul"></p>
+      <p class="detail-calcul" id="detail-calcul">Renseignez l'épreuve, la compétition et la performance.</p>
     </div>
   </section>
 
