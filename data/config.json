@@ -1,0 +1,13 @@
+{
+  "commentaire": "Paramètres des liens vers les classements World Athletics. campagneRoadTo change à chaque cycle olympique ou mondial : mettre à jour cet identifiant plutôt que le code.",
+  "campagneRoadTo": {
+    "identifiant": "7138987",
+    "libelle": "Road to Paris 2024",
+    "actif": false
+  },
+  "epreuvesRoadTo": {
+    "High-Jump":   { "Women": "10229526", "Men": "10229615" },
+    "Long-Jump":   { "Women": "10229528", "Men": "10229617" },
+    "Triple-Jump": { "Women": "10229529", "Men": "10229618" }
+  }
+}
