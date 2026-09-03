@@ -1,0 +1,42 @@
+{
+  "saison": "2026",
+  "source": "https://worldathletics.org/world-ranking-rules/track-field-events-2026",
+  "miseAJour": "2026-09-03",
+  "commentaire": "Points de placement par catégorie de compétition. Chaque tableau donne les points de la 1re à la 16e place. Vérifier ce fichier à chaque nouvelle saison World Athletics.",
+  "categories": {
+    "OW": { "libelle": "Jeux Olympiques / Championnats du monde", "points": [260, 230, 210, 190, 175, 160, 150, 140, 91, 84, 77, 70, 66, 63, 60, 57] },
+    "DF": { "libelle": "Finale de la Diamond League",            "points": [170, 150, 130, 120, 110, 100, 95, 90, 63, 56, 49, 42, 0, 0, 0, 0] },
+    "GW": { "libelle": "Gold — niveau mondial",                  "points": [140, 120, 110, 100, 90, 80, 75, 70, 49, 42, 35, 32, 0, 0, 0, 0] },
+    "GL": { "libelle": "Gold — niveau continental",              "points": [120, 105, 95, 85, 75, 70, 65, 60, 42, 35, 31, 28, 0, 0, 0, 0] },
+    "A":  { "libelle": "Catégorie A",                            "points": [100, 84, 77, 70, 63, 56, 49, 42, 35, 31, 27, 24, 0, 0, 0, 0] },
+    "B":  { "libelle": "Catégorie B",                            "points": [70, 56, 49, 42, 38, 34, 30, 27, 24, 21, 18, 15, 0, 0, 0, 0] },
+    "C":  { "libelle": "Catégorie C",                            "points": [42, 35, 31, 28, 25, 22, 19, 16, 14, 12, 10, 8, 0, 0, 0, 0] },
+    "D":  { "libelle": "Catégorie D",                            "points": [28, 24, 21, 18, 15, 13, 12, 11, 0, 0, 0, 0, 0, 0, 0, 0] },
+    "E":  { "libelle": "Catégorie E",                            "points": [18, 15, 13, 11, 9, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    "F":  { "libelle": "Interclubs",                             "points": [11, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+  },
+  "competitions": [
+    { "nom": "Olympic Games", "categorie": "OW" },
+    { "nom": "WA Championships", "categorie": "OW" },
+    { "nom": "Diamond League Finals", "categorie": "DF" },
+    { "nom": "Diamond League Meetings", "categorie": "GW" },
+    { "nom": "WA Indoor Championships", "categorie": "GW" },
+    { "nom": "Area Outdoor Championships", "categorie": "GL" },
+    { "nom": "Diamond League Meetings (Additional events)", "categorie": "A" },
+    { "nom": "Area Indoor Championships", "categorie": "A" },
+    { "nom": "WA Indoor Gold Meetings", "categorie": "A" },
+    { "nom": "WA Continental Tour Gold Meetings", "categorie": "A" },
+    { "nom": "Area second tier Championships (European Team Championships Super League)", "categorie": "B" },
+    { "nom": "National Outdoor Championships", "categorie": "B" },
+    { "nom": "Regional Games & Athletics Championships (Francophone Games)", "categorie": "B" },
+    { "nom": "WA Indoor Silver Meetings", "categorie": "B" },
+    { "nom": "WA Continental Silver Meetings", "categorie": "B" },
+    { "nom": "WA Indoor Bronze Meetings", "categorie": "C" },
+    { "nom": "WA Continental Bronze Meetings", "categorie": "C" },
+    { "nom": "Regional Games & Championships (Mediterranean Games)", "categorie": "C" },
+    { "nom": "WA Indoor Challenger", "categorie": "D" },
+    { "nom": "WA Continental Challenger", "categorie": "D" },
+    { "nom": "National Indoor Championships", "categorie": "D" },
+    { "nom": "Interclub", "categorie": "F" }
+  ]
+}
