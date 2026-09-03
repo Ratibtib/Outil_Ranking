@@ -1,5 +1,11 @@
 # Audit technique — Outil Ranking
 
+> **Statut : corrigé.** Cet audit décrit l'état du dépôt au commit `d53af82`.
+> Les correctifs ont été appliqués dans la refonte qui a suivi ; ce document
+> est conservé comme trace de l'état d'origine et des décisions prises.
+> Deux anomalies supplémentaires, invisibles à la lecture du code seul, ont été
+> découvertes pendant les corrections — elles sont décrites au chapitre 6.
+
 Audit réalisé le 3 septembre 2026 sur la branche `main` (dernier commit `d53af82`).
 
 Le dépôt contient deux fichiers : `index.html` (3 435 lignes) et `bdd.csv`
@@ -199,9 +205,10 @@ campagne **Paris 2024**. Il est obsolète depuis deux saisons.
 De la même manière, la clé `'OW_1': '260'` (ligne 681) utilise un **underscore**
 là où toutes les autres clés utilisent un tiret. Elle n'est donc jamais
 atteinte, la table étant interrogée avec `NiveauCompétition + '-' + Classement`.
-La valeur effectivement servie pour une victoire en Olympic/World est
-`'OW-1': '375'` (ligne 628). **Ce point demande une validation métier :
-375 ou 260 ?**
+La valeur effectivement servie pour une victoire en Olympic/World était
+`'OW-1': '375'` (ligne 628). **Tranché : la valeur correcte est 260**, confirmée
+par les règles World Athletics 2026. Le reste de la table (230, 210, 190, 175,
+160, 150, 140, 91, 84…) y correspondait déjà exactement.
 
 La table contient par ailleurs seize clés `'-1'` à `'-16'` (niveau vide)
 renvoyant toutes `'0'`, sans usage réel.
@@ -302,11 +309,76 @@ visuel.
 
 ---
 
+## 6. Découvert pendant les corrections
+
+Trois constats ne sont apparus qu'en confrontant le code aux données réelles.
+
+### 6.1 Une septième place mieux payée qu'une sixième
+
+La table de placement déclarait `'D-7': '22'`, au milieu d'une série par
+ailleurs décroissante :
+
+    D : 28, 24, 21, 18, 15, 13, [22], 11
+
+Le barème officiel 2026 donne **12** pour cette place : il s'agit d'une
+coquille (un `2` à la place d'un `1`) qui rendait une 7e place plus rentable
+qu'une 6e dans toutes les compétitions de catégorie D — WA Indoor Challenger,
+WA Continental Challenger et championnats nationaux en salle.
+
+La valeur est corrigée, et le script `outils/verifier-donnees.mjs` refuse
+désormais tout barème dont les points ne décroissent pas avec le rang.
+
+### 6.2 Les épreuves combinées ne renvoyaient jamais de points
+
+Le menu proposait `Decathlon` et `Heptathlon` comme deux entrées distinctes,
+alors que le barème stocke une seule épreuve nommée `Decathlon / Heptathlon`.
+Aucune des deux valeurs du menu ne correspondait donc à une ligne du fichier :
+la recherche échouait systématiquement pour les épreuves combinées.
+
+Le menu emploie désormais la valeur exacte du barème.
+
+### 6.3 79 % du barème de performance n'est pas coté
+
+Sur les 118 985 lignes du fichier, **94 350 n'ont aucun nombre de points**.
+Ce n'est pas une corruption : le barème ne cote qu'une performance de référence
+par palier, de 800 à 1400 points. Les performances intermédiaires figurent dans
+le fichier sans valeur.
+
+Le taux varie fortement selon l'épreuve :
+
+| Épreuve (hommes) | Lignes cotées |
+|---|---|
+| 100m, 200m, hauteur, longueur, perche, triple saut, haies | 100 % |
+| Poids | 60 % |
+| 400m | 66 % |
+| 800m | 29 % |
+| Mile | 12 % |
+| 4x100m | **0 %** |
+
+L'ancienne version affichait un champ vide sans explication dans tous ces cas.
+La page indique désormais explicitement la différence entre une performance
+absente du barème et une performance présente mais non cotée.
+
+**Deux points restent à trancher côté club :**
+
+1. **Faut-il arrondir au palier inférieur ?** C'est ainsi que fonctionne le
+   barème World Athletics : une performance située entre deux paliers vaut les
+   points du palier immédiatement moins bon. L'outil ne le fait pas — ni avant,
+   ni maintenant — car cela change la sémantique du calcul. C'est une décision
+   métier, pas technique.
+2. **Le 4x100m n'a aucune ligne cotée.** Soit le barème source est incomplet
+   pour cette épreuve, soit elle n'a pas à figurer dans le menu.
+
+---
+
 ## Ordre de traitement recommandé
 
 Les points 1 à 4 de la phase 1 se corrigent en une session et débloquent
 l'usage réel de l'outil. Ils sont indépendants les uns des autres et peuvent
 être livrés séparément.
 
-Le point 8 (valeur `OW-1`) est le seul qui requiert un arbitrage métier avant
-d'être codé.
+Le point 8 (valeur `OW-1`) a été tranché à 260, conformément aux règles
+World Athletics 2026.
+
+Les arbitrages restants sont ceux du chapitre 6 : l'arrondi au palier inférieur
+et le sort du 4x100m.

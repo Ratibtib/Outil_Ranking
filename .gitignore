@@ -1,0 +1,12 @@
+# Systeme
+.DS_Store
+Thumbs.db
+
+# Editeurs
+.vscode/
+.idea/
+*.swp
+
+# Dependances et sorties d'outillage
+node_modules/
+*.log
